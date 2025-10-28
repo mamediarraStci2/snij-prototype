@@ -33,7 +33,20 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-8 bg-gradient-to-b from-white to-gray-50">
+      {/* Section dédiée à la vague - sur fond blanc */}
+      <section className="relative bg-white overflow-hidden" style={{height: '160px'}}>
+        <svg viewBox="0 0 1440 160" preserveAspectRatio="none" className="block w-full h-full animate-wave-slow">
+          <defs>
+            <linearGradient id="heroWave" x1="0" y1="1" x2="0" y2="0">
+              <stop offset="0%" stopColor="#6ee7b7" stopOpacity="0.3" />
+              <stop offset="100%" stopColor="#34d399" stopOpacity="0.5" />
+            </linearGradient>
+          </defs>
+          <path fill="url(#heroWave)" d="M0,0 L0,64 L60,74.7 C120,85 240,107 360,101.3 C480,96 600,64 720,58.7 C840,53 960,75 1080,85.3 C1200,96 1320,96 1380,96 L1440,96 L1440,0 Z" />
+        </svg>
+      </section>
+
+      <section className="pt-2 pb-8 bg-gradient-to-b from-white to-gray-50">
         <div className="container-snij">
           <h3 className="text-2xl font-bold text-gray-900 text-center mb-8 reveal">Services clés</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -55,7 +68,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative py-10 bg-gradient-to-b from-white to-emerald-50 overflow-hidden">
+      <section className="relative pt-4 pb-10 bg-gradient-to-b from-white to-emerald-50 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('/pattern-scales.svg')] bg-repeat"></div>
         </div>
@@ -108,18 +121,18 @@ export default function Home() {
           </div>
         </div>
       )}
-      <section id="carte-juridictions" className="pt-14 pb-4 bg-white overflow-hidden">
-        <div className="container-snij">
-          <div className="text-center mb-10">
-            <h3 className="text-2xl font-bold text-emerald-800 mb-3">Carte Interactive des Juridictions</h3>
-            <p className="text-gray-600 max-w-3xl mx-auto">
+      <section id="carte-juridictions" className="pt-8 md:pt-14 pb-4 bg-white overflow-hidden">
+        <div className="container-snij px-2 md:px-4">
+          <div className="text-center mb-6 md:mb-10">
+            <h3 className="text-xl md:text-2xl font-bold text-emerald-800 mb-2 md:mb-3">Carte Interactive des Juridictions</h3>
+            <p className="text-sm md:text-base text-gray-600 max-w-3xl mx-auto px-4">
               Cliquez sur les points rouges pour découvrir les juridictions disponibles dans chaque région
             </p>
           </div>
-          <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-2 relative">
-            <div className="relative w-full" style={{ paddingBottom: '80%' }}>
+          <div className="w-full max-w-5xl mx-auto relative">
+            <div className="relative w-full" style={{ paddingBottom: 'min(80%, 600px)' }}>
               <div className="absolute inset-0 w-full h-full">
-                <div dangerouslySetInnerHTML={{ __html: carteRaw }} className="w-full h-full" />
+                <div dangerouslySetInnerHTML={{ __html: carteRaw }} className="w-full h-full object-contain" />
                 
                 {/* Points rouges des juridictions */}
                 <div className="absolute inset-0">
@@ -158,10 +171,10 @@ export default function Home() {
                         setSelectedTribunal(tribunal);
                       }}
                     >
-                      <div className="w-5 h-5 bg-red-600 rounded-full border-2 border-white shadow-lg transform transition-all duration-300 group-hover:scale-150 group-hover:bg-red-700"></div>
-                      <div className="absolute bottom-full left-1/2 mb-2 px-3 py-1 bg-white rounded shadow-lg text-xs font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-1/2">
-                        <div className="font-bold text-emerald-800">{tribunal.name}</div>
-                        <div className="text-gray-600 text-xs">{tribunal.region}</div>
+                      <div className="w-6 h-6 md:w-5 md:h-5 bg-red-600 rounded-full border-2 border-white shadow-lg transform transition-all duration-300 group-hover:scale-150 group-hover:bg-red-700"></div>
+                      <div className="absolute bottom-full left-1/2 mb-2 px-2 py-1 md:px-3 md:py-1 bg-white rounded shadow-lg text-xs font-medium max-w-[200px] md:max-w-none md:whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-1/2 z-20">
+                        <div className="font-bold text-emerald-800 text-[10px] md:text-xs leading-tight">{tribunal.name}</div>
+                        <div className="text-gray-600 text-[9px] md:text-xs">{tribunal.region}</div>
                       </div>
                     </div>
                   ))}
@@ -169,10 +182,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="mt-2 text-center">
-            <Link to="/juridictions" className="inline-flex items-center px-6 py-2 border border-transparent text-base font-medium rounded-md text-white bg-emerald-700 hover:bg-emerald-800 transition-colors">
+          <div className="mt-4 md:mt-2 text-center px-4">
+            <Link to="/juridictions" className="inline-flex items-center px-4 md:px-6 py-2 border border-transparent text-sm md:text-base font-medium rounded-md text-white bg-emerald-700 hover:bg-emerald-800 transition-colors">
               Voir toutes les juridictions
-              <svg className="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <svg className="ml-2 -mr-1 w-4 h-4 md:w-5 md:h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
               </svg>
             </Link>
@@ -181,7 +194,7 @@ export default function Home() {
       </section>
 
       {/* Section Statistiques avec animations */}
-      <section className="py-10 bg-gradient-to-br from-emerald-50 to-white">
+      <section className="pt-16 pb-10 bg-gradient-to-br from-emerald-50 to-white">
         <div className="container-snij">
           <div className="text-center mb-12" data-aos="fade-up">
             <h3 className="text-2xl md:text-3xl font-bold text-emerald-800 mb-3">Notre Impact en Chiffres</h3>

@@ -61,9 +61,16 @@ body {
   100% { opacity: 1; transform: scale(1) }
 }
 
+@keyframes waveSlow {
+  0% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-25px) translateY(-5px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
 .fade-up { animation: fadeUp .6s ease both; }
 .scale-in { animation: scaleIn .35s ease both; }
 .float-slow { animation: floatSlow 6s ease-in-out infinite; }
+.animate-wave-slow { animation: waveSlow 8s ease-in-out infinite; }
 
 /* Révélation au scroll */
 .reveal { opacity: 0; transform: translateY(16px); transition: all .6s ease; }
