@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/* Base SNIJ */
+html, body, #root { height: 100%; }
+body {
+  font-family: 'Open Sans', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+
+/* Utilitaires design réutilisables */
+.container-snij {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-200;
+}
+
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-5 py-3 rounded-md font-semibold text-white bg-emerald-700 hover:bg-emerald-800 transition;
+}
+
+.btn-outline {
+  @apply inline-flex items-center gap-2 px-5 py-3 rounded-md font-semibold text-emerald-700 border-2 border-emerald-700 hover:bg-emerald-700 hover:text-white transition;
+}
+
+/* Fix d'affichage pour les SVG embarqués en <img> */
+.map-svg {
+  display: block;
+  background-color: transparent;
+}
+
+.map-embed svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Navigation en boutons verts (style capture) */
+.nav-pill {
+  @apply inline-block px-6 py-3 rounded-md font-extrabold text-white bg-emerald-800 hover:bg-emerald-900 shadow-sm transition;
+}
+.nav-pill.inactive {
+  @apply bg-emerald-700/80 hover:bg-emerald-800;
+}
+
+/* Animations personnalisées */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatSlow {
+  0% { transform: translateY(0px) }
+  50% { transform: translateY(-8px) }
+  100% { transform: translateY(0px) }
+}
+
+@keyframes scaleIn {
+  0% { opacity: 0; transform: scale(.96) }
+  100% { opacity: 1; transform: scale(1) }
+}
+
+.fade-up { animation: fadeUp .6s ease both; }
+.scale-in { animation: scaleIn .35s ease both; }
+.float-slow { animation: floatSlow 6s ease-in-out infinite; }
+
+/* Révélation au scroll */
+.reveal { opacity: 0; transform: translateY(16px); transition: all .6s ease; }
+.reveal-visible { opacity: 1; transform: translateY(0); }
