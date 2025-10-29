@@ -1,4 +1,5 @@
 import './index.css'
+import { useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
 function Breadcrumb() {
@@ -23,13 +24,18 @@ function Breadcrumb() {
 }
 
 export default function App() {
+  const [mobileOpen, setMobileOpen] = useState(false)
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <header className="sticky top-0 z-40 border-b-2 border-emerald-800 shadow-soft bg-white/80 backdrop-blur-sm">
         <div className="w-full px-3 sm:px-4 lg:px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3 -ml-1 sm:-ml-2 lg:-ml-3">
             <img src="/ministere_justice.png" alt="Ministère de la Justice du Sénégal" className="h-18 w-auto object-contain" />
-            <img src="/logo.png" alt="SNIJ - Système National d'Information Judiciaire" className="h-18 w-18 rounded-full object-cover ring-1 ring-gray-300" />
+            <Link to="/" className="flex items-center">
+              <span className="text-4xl font-bold bg-gradient-to-r from-emerald-700 via-emerald-600 to-teal-700 bg-clip-text text-transparent tracking-tight" style={{ fontFamily: "'Playfair Display', 'Georgia', serif" }}>
+                SNIJ
+              </span>
+            </Link>
             <span className="sr-only">SNIJ - Système National d'Information Judiciaire</span>
           </div>
           <nav className="hidden md:block">
@@ -42,10 +48,29 @@ export default function App() {
               <li><Link to="/contact" className="nav-pill inactive">Contact</Link></li>
             </ul>
           </nav>
-          <button className="md:hidden text-emerald-800 text-2xl">
+          <button
+            className="md:hidden text-emerald-800 text-2xl"
+            aria-label="Ouvrir le menu"
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen(o => !o)}
+          >
             <i className="fas fa-bars"></i>
           </button>
         </div>
+        {mobileOpen && (
+          <div className="md:hidden border-t border-emerald-800/20 bg-white/95 backdrop-blur-sm">
+            <div className="px-3 sm:px-4 lg:px-6 py-3">
+              <ul className="flex flex-col gap-2">
+                <li><Link to="/" className="nav-pill" onClick={() => setMobileOpen(false)}>Accueil</Link></li>
+                <li><Link to="/recherche" className="nav-pill inactive" onClick={() => setMobileOpen(false)}>Recherche</Link></li>
+                <li><Link to="/juridictions" className="nav-pill inactive" onClick={() => setMobileOpen(false)}>Juridictions</Link></li>
+                <li><Link to="/actualites" className="nav-pill inactive" onClick={() => setMobileOpen(false)}>Actualités</Link></li>
+                <li><Link to="/telechargements" className="nav-pill inactive" onClick={() => setMobileOpen(false)}>Téléchargements</Link></li>
+                <li><Link to="/contact" className="nav-pill inactive" onClick={() => setMobileOpen(false)}>Contact</Link></li>
+              </ul>
+            </div>
+          </div>
+        )}
       </header>
 
       <Breadcrumb />

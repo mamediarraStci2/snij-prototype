@@ -46,8 +46,11 @@ export default function Home() {
         </svg>
       </section>
 
-      <section className="pt-2 pb-8 bg-gradient-to-b from-white to-gray-50">
-        <div className="container-snij">
+      <section className="relative pt-2 pb-8 bg-white">
+        <div className="absolute inset-0 flex items-center justify-center opacity-40 pointer-events-none py-4">
+          <img src="/scale.png" alt="" className="max-w-md w-full h-auto object-contain" />
+        </div>
+        <div className="container-snij relative">
           <h3 className="text-2xl font-bold text-gray-900 text-center mb-8 reveal">Services clés</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -121,7 +124,7 @@ export default function Home() {
           </div>
         </div>
       )}
-      <section id="carte-juridictions" className="pt-8 md:pt-14 pb-4 bg-white overflow-hidden">
+      <section id="carte-juridictions" className="pt-8 md:pt-14 pb-24 bg-white overflow-x-hidden">
         <div className="container-snij px-2 md:px-4">
           <div className="text-center mb-6 md:mb-10">
             <h3 className="text-xl md:text-2xl font-bold text-emerald-800 mb-2 md:mb-3">Carte Interactive des Juridictions</h3>
@@ -129,33 +132,33 @@ export default function Home() {
               Cliquez sur les points rouges pour découvrir les juridictions disponibles dans chaque région
             </p>
           </div>
-          <div className="w-full max-w-5xl mx-auto relative">
-            <div className="relative w-full" style={{ paddingBottom: 'min(80%, 600px)' }}>
+          <div className="w-full max-w-5xl mx-auto relative px-4 md:px-0">
+            <div className="relative w-full aspect-[1000/736] md:aspect-[1000/736]">
               <div className="absolute inset-0 w-full h-full">
-                <div dangerouslySetInnerHTML={{ __html: carteRaw }} className="w-full h-full object-contain" />
-                
+                <SvgEmbedRaw className="w-full h-full" />
+
                 {/* Points rouges des juridictions */}
                 <div className="absolute inset-0">
                   {[
                     // Dakar
-                    { id: 1, x: 15, y: 35, name: 'Tribunal de Grande Instance de Dakar', region: 'Dakar' },
-                    { id: 2, x: 12, y: 40, name: 'Tribunal de Commerce de Dakar', region: 'Dakar' },
+                    { id: 1, x: 25, y: 42, name: 'Tribunal de Grande Instance de Dakar', region: 'Dakar' },
+                    { id: 2, x: 22, y: 48, name: 'Tribunal de Commerce de Dakar', region: 'Dakar' },
                     // Thiès
-                    { id: 3, x: 10, y: 50, name: 'Tribunal de Grande Instance de Thiès', region: 'Thiès' },
+                    { id: 3, x: 20, y: 55, name: 'Tribunal de Grande Instance de Thiès', region: 'Thiès' },
                     // Saint-Louis
-                    { id: 4, x: 20, y: 18, name: 'Tribunal de Grande Instance de Saint-Louis', region: 'Saint-Louis' },
+                    { id: 4, x: 30, y: 28, name: 'Tribunal de Grande Instance de Saint-Louis', region: 'Saint-Louis' },
                     // Ziguinchor
-                    { id: 5, x: 5, y: 75, name: 'Tribunal de Grande Instance de Ziguinchor', region: 'Ziguinchor' },
+                    { id: 5, x: 18, y: 72, name: 'Tribunal de Grande Instance de Ziguinchor', region: 'Ziguinchor' },
                     // Kaolack
-                    { id: 6, x: 25, y: 45, name: 'Tribunal de Grande Instance de Kaolack', region: 'Kaolack' },
+                    { id: 6, x: 35, y: 52, name: 'Tribunal de Grande Instance de Kaolack', region: 'Kaolack' },
                     // Tambacounda
-                    { id: 7, x: 65, y: 42, name: 'Tribunal de Grande Instance de Tambacounda', region: 'Tambacounda' },
+                    { id: 7, x: 65, y: 48, name: 'Tribunal de Grande Instance de Tambacounda', region: 'Tambacounda' },
                     // Kolda
-                    { id: 8, x: 55, y: 85, name: 'Tribunal de Grande Instance de Kolda', region: 'Kolda' },
+                    { id: 8, x: 55, y: 70, name: 'Tribunal de Grande Instance de Kolda', region: 'Kolda' },
                     // Matam
-                    { id: 9, x: 55, y: 22, name: 'Tribunal de Grande Instance de Matam', region: 'Matam' },
+                    { id: 9, x: 55, y: 32, name: 'Tribunal de Grande Instance de Matam', region: 'Matam' },
                     // Kaffrine
-                    { id: 10, x: 35, y: 38, name: 'Tribunal de Grande Instance de Kaffrine', region: 'Kaffrine' },
+                    { id: 10, x: 42, y: 45, name: 'Tribunal de Grande Instance de Kaffrine', region: 'Kaffrine' },
                   ].map((tribunal) => (
                     <div
                       key={tribunal.id}
@@ -171,10 +174,10 @@ export default function Home() {
                         setSelectedTribunal(tribunal);
                       }}
                     >
-                      <div className="w-6 h-6 md:w-5 md:h-5 bg-red-600 rounded-full border-2 border-white shadow-lg transform transition-all duration-300 group-hover:scale-150 group-hover:bg-red-700"></div>
-                      <div className="absolute bottom-full left-1/2 mb-2 px-2 py-1 md:px-3 md:py-1 bg-white rounded shadow-lg text-xs font-medium max-w-[200px] md:max-w-none md:whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-1/2 z-20">
-                        <div className="font-bold text-emerald-800 text-[10px] md:text-xs leading-tight">{tribunal.name}</div>
-                        <div className="text-gray-600 text-[9px] md:text-xs">{tribunal.region}</div>
+                      <div className="w-4 h-4 md:w-5 md:h-5 bg-red-600 rounded-full border-2 border-white shadow-lg transform transition-all duration-300 group-hover:scale-125 md:group-hover:scale-150 group-hover:bg-red-700"></div>
+                      <div className="absolute bottom-full left-1/2 mb-2 px-2 py-1 md:px-3 md:py-1 bg-white rounded shadow-lg text-xs font-medium w-40 md:w-auto md:whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform -translate-x-1/2 z-20">
+                        <div className="font-bold text-emerald-800 text-[9px] md:text-xs leading-tight break-words md:break-normal">{tribunal.name}</div>
+                        <div className="text-gray-600 text-[8px] md:text-xs">{tribunal.region}</div>
                       </div>
                     </div>
                   ))}
@@ -194,7 +197,7 @@ export default function Home() {
       </section>
 
       {/* Section Statistiques avec animations */}
-      <section className="pt-16 pb-10 bg-gradient-to-br from-emerald-50 to-white">
+      <section className="pt-32 pb-10 bg-gradient-to-br from-emerald-50 to-white">
         <div className="container-snij">
           <div className="text-center mb-12" data-aos="fade-up">
             <h3 className="text-2xl md:text-3xl font-bold text-emerald-800 mb-3">Notre Impact en Chiffres</h3>
